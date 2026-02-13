@@ -1,0 +1,56 @@
+﻿Starting DNA K-mer Analysis...
+
+--- Verification Phase ---
+Brute Force Results: [ACG: count=3, positions=[0, 3, 7]]
+HashMap Results:     [ACG: count=3, positions=[0, 3, 7]]
+Sort Results:        [ACG: count=3, positions=[0, 3, 7]]
+SUCCESS: All approaches produce identical results on test input.
+Running randomized verification...
+SUCCESS: All approaches produce identical results on random input (N=1000, K=10).
+
+--- Benchmarking Phase ---
+Dataset      K     Algorithm    Time(ms)        Memory(MB) Results   
+Uniform      10    BruteForce   1292.19         1.44       57        
+Uniform      10    HashMap      12.63           1.91       57        
+Uniform      10    SortBased    19.00           0.29       57        
+----------------------------------------------------------------
+Uniform      50    BruteForce   546.13          1.89       0         
+Uniform      50    HashMap      8.09            2.28       0         
+Uniform      50    SortBased    13.39           0.25       0         
+----------------------------------------------------------------
+Uniform      200   BruteForce   453.22          3.23       0         
+Uniform      200   HashMap      3.61            3.61       0         
+Uniform      200   SortBased    9.18            0.25       0         
+----------------------------------------------------------------
+Repetitive   10    BruteForce   1.79            0.34       4         
+Repetitive   10    HashMap      2.57            1.06       4         
+Repetitive   10    SortBased    7.09            0.38       4         
+----------------------------------------------------------------
+Repetitive   50    BruteForce   3.60            0.32       4         
+Repetitive   50    HashMap      3.07            1.45       4         
+Repetitive   50    SortBased    14.61           0.37       4         
+----------------------------------------------------------------
+Repetitive   200   BruteForce   13.77           0.32       4         
+Repetitive   200   HashMap      10.43           2.82       4         
+Repetitive   200   SortBased    23.70           0.37       4         
+----------------------------------------------------------------
+Biased       10    BruteForce   475.62          1.13       1476      
+Biased       10    HashMap      3.91            1.70       1476      
+Biased       10    SortBased    26.44           0.52       1476      
+----------------------------------------------------------------
+Biased       50    BruteForce   700.26          1.85       0         
+Biased       50    HashMap      3.99            2.29       0         
+Biased       50    SortBased    19.09           0.26       0         
+----------------------------------------------------------------
+Biased       200   BruteForce   918.55          3.23       0         
+Biased       200   HashMap      4.43            3.61       0         
+Biased       200   SortBased    8.91            0.25       0         
+----------------------------------------------------------------
+
+--- Large N Benchmark (Map vs Sort) ---
+Uniform_L    10    HashMap      146.70          18.31      4441      
+Uniform_L    10    SortBased    150.48          3.55       4441      
+Uniform_L    50    HashMap      119.38          24.03      0         
+Uniform_L    50    SortBased    137.48          3.04       0         
+Uniform_L    200   HashMap      134.19          37.82      0         
+Uniform_L    200   SortBased    174.67          3.19       0         
