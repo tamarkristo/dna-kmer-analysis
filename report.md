@@ -74,6 +74,15 @@ The results clearly highlight the classic time-space trade-off in computer scien
 *   The **HashMap** approach is the fastest. By sacrificing memory to cache every substring, it achieves near-linear time processing. However, the memory usage grew linearly with $K$ and $N$. At $N=100,000$ and $K=200$, it consumed nearly 38 MB. Projecting this to a full human genome (3 billion base pairs), this approach would crash due to `OutOfMemoryError` on most standard machines.
 *   The **Sort-Based** approach was remarkably memory stable. Note that its memory usage remained flat around 3 MB regardless of $N$ or $K$. This is because we only reshuffle integers; we never allocate new strings. This makes it the only viable option for truly large genomic datasets, despite being roughly 10-20% slower than the HashMap.
 
+### Why HashMap is Not Truly O(1) in Practice
+While HashMap operations are theoretically $O(1)$ on average, several factors make them slower in practice:
+*   **Hash Function Computation**: Computing the hash code for a string of length $K$ requires $O(K)$ time to process all characters. Java's `String.hashCode()` must iterate through the entire string.
+*   **Substring Creation Cost**: Each `dna.substring(i, i+k)` call allocates a new `String` object on the heap, requiring $O(K)$ time to copy characters and $O(K)$ space for storage.
+*   **Hash Collisions**: When different K-mers hash to the same bucket, the HashMap must resolve collisions (via chaining or probing), degrading to $O(N)$ in the worst case for that bucket.
+*   **Garbage Collection Overhead**: Creating $N$ substring objects triggers frequent garbage collection, adding hidden time costs not captured in our measurements.
+
+Therefore, the "$O(1)$" lookup is more accurately $O(K)$ per operation, making the overall algorithm $O(N \cdot K)$, not $O(N)$.
+
 ### Brute Force Performance
 The Brute Force method performed poorly, confirming the theoretical prediction. Interestingly, its run time decreased slightly as $K$ increased. This is likely because with a larger $K$, the probability of a mismatch happening on the *first* character increases, allowing the inner comparison loop to break early more often.
 
