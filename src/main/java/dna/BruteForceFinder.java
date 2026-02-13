@@ -44,8 +44,9 @@ public class BruteForceFinder implements KmerFinder {
                 }
             }
 
+            visited[i] = true;
+
             if (positions.size() > 1) {
-                visited[i] = true;
                 results.add(new KmerResult(target, positions.size(), positions));
             }
         }

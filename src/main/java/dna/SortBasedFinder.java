@@ -2,6 +2,7 @@ package dna;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -65,6 +66,7 @@ public class SortBasedFinder implements KmerFinder {
                 for (int m = currentStart; m < currentEnd; m++) {
                     positions.add(indices[m]);
                 }
+                Collections.sort(positions);
                 results.add(new KmerResult(kmer, count, positions));
             }
 
